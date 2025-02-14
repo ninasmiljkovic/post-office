@@ -1,0 +1,14 @@
+<mat-card style="margin: 1rem">
+  <form [formGroup]="postOfficeForm"
+        (ngSubmit)="submitForm()"
+        class="create-postoffice-form"
+  >
+    <mat-form-field>
+      <mat-label>Zip Code</mat-label>
+      <input matInput formControlName="zipCode" required>
+    </mat-form-field>
+
+    <button style="margin: 0 32px;"
+      mat-raised-button color="primary" type="submit">Save</button>
+  </form>
+</mat-card>

@@ -1,0 +1,50 @@
+<mat-card style="height: 100%">
+  <form [formGroup]="shipmentForm"
+        (ngSubmit)="submitForm()"
+        class="create-shipment-form"
+  >
+    <mat-form-field>
+      <mat-label>Shipment Number</mat-label>
+      <input matInput formControlName="shipmentNumber" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Origin Post Office</mat-label>
+      <input matInput formControlName="originId" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Destination Post Office</mat-label>
+      <input matInput formControlName="destinationId">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type" required>
+        @for (type of typeValues(); track type) {
+          <mat-option [value]="type">{{ shipmentTypeLabels[type] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        @for (status of statusValues(); track status) {
+          <mat-option [value]="status">{{ shipmentStatusLabels[status] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Weight</mat-label>
+      <mat-select formControlName="weight" required>
+        @for (weight of weightValues(); track weight) {
+          <mat-option [value]="weight">{{ shipmentWeightLabels[weight] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </form>
+</mat-card>

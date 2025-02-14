@@ -1,0 +1,109 @@
+<mat-card>
+  <form [formGroup]="filterForm" style="margin: 15px 15px 0 15px;">
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        <mat-option>Clear Filter</mat-option>
+        @for (type of typeValues(); track type) {
+          <mat-option [value]="type">{{ shipmentTypeLabels[type] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option>Clear Filter</mat-option>
+        @for (status of statusValues(); track status) {
+          <mat-option [value]="status">{{ shipmentStatusLabels[status] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Weight</mat-label>
+      <mat-select formControlName="weight">
+        <mat-option>Clear Filter</mat-option>
+        @for (weight of weightValues(); track weight) {
+          <mat-option [value]="weight">{{ shipmentWeightLabels[weight] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Shipment Number</mat-label>
+      <input matInput formControlName="shipmentNumber">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Post Office</mat-label>
+      <input matInput formControlName="postOfficeId">
+    </mat-form-field>
+
+    <button style="margin: 16px" mat-raised-button color="primary" (click)="fetchShipments()">Filter</button>
+    <button style="margin: 16px" mat-raised-button color="warn" (click)="clearFilters()">Clear Filters</button>
+  </form>
+</mat-card>
+
+<div class="create-shipment-button-wrapper">
+  <button mat-raised-button color="primary" (click)="createShipment()">
+    Create Shipment
+  </button>
+</div>
+
+<mat-card>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="shipmentNumber">
+      <th mat-header-cell *matHeaderCellDef> Shipment Number </th>
+      <td mat-cell *matCellDef="let element"> {{ element.shipmentNumber }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{ getTypeLabel(element.type) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let element"> {{ getStatusLabel(element.status) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef> Weight </th>
+      <td mat-cell *matCellDef="let element"> {{ getWeightLabel(element.weight) }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="originId">
+      <th mat-header-cell *matHeaderCellDef> Origin Post Office </th>
+      <td mat-cell *matCellDef="let element"> {{ element.originId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="destinationId">
+      <th mat-header-cell *matHeaderCellDef> Destination Post Office </th>
+      <td mat-cell *matCellDef="let element"> {{ element.destinationId }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="editShipment(element._id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button (click)="deleteShipment(element._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="10"
+                 [length]="totalItems"
+                 [pageIndex]="currentPage"
+                 (page)="onPageChange($event)"
+                 showFirstLastButtons
+  ></mat-paginator>
+</mat-card>
+
+

@@ -1,0 +1,42 @@
+<mat-card style="margin: 1rem">
+  <form [formGroup]="postOfficeForm"
+        (ngSubmit)="submitForm()"
+        class="postoffice-form"
+  >
+    <mat-form-field>
+      <mat-label>Zip Code</mat-label>
+      <input matInput formControlName="zipCode" required>
+    </mat-form-field>
+
+    <button style="margin: 0 32px;"
+            mat-raised-button
+            color="primary"
+            type="submit"
+    >
+      Create
+    </button>
+  </form>
+</mat-card>
+
+<table mat-table [dataSource]="postOffices" class="mat-elevation-z8">
+  <ng-container matColumnDef="zipCode">
+    <th mat-header-cell *matHeaderCellDef> Zip Code </th>
+    <td mat-cell *matCellDef="let element"> {{ element.zipCode }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="editPostOffice(element._id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deletePostOffice(element._id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
