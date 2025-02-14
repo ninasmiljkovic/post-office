@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PostOfficeService} from '../../../services/post-office.service';
-import { PostOffice } from '../../../../../../shared/postoffice.model';
+import { PostOffice } from '../../../types/postoffice.model';
 import {MatButton} from '@angular/material/button';
 import {MatCard} from '@angular/material/card';
 import {MatFormField, MatLabel} from '@angular/material/form-field';

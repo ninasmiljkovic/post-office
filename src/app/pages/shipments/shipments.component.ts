@@ -5,7 +5,7 @@ import {ShipmentService} from '../../services/shipment.service';
 import { Shipment, ShipmentTypes, ShipmentStatuses, ShipmentWeights,
   ShipmentTypeLabels, ShipmentWeightLabels, ShipmentStatusLabels,
   ShipmentType, ShipmentWeight, ShipmentStatus
-} from '../../../../../shared/shipment.model';
+} from '../../types/shipment.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator, PageEvent} from '@angular/material/paginator';
 

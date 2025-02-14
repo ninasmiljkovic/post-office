@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {PostOfficeService} from '../../services/post-office.service';
-import { PostOffice } from '../../../../../shared/postoffice.model';
+import { PostOffice } from '../../types/postoffice.model';
 import {Router} from '@angular/router';
 
 @Component({

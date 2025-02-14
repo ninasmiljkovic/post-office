@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import { PostOffice } from '../../../../shared/postoffice.model';
+import { PostOffice } from '../types/postoffice.model';
 
 @Injectable({
   providedIn: 'root'

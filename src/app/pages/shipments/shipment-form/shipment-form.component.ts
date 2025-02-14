@@ -4,7 +4,7 @@ import {ShipmentService} from '../../../services/shipment.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { Shipment, ShipmentTypes, ShipmentStatuses, ShipmentWeights,
   ShipmentStatusLabels, ShipmentWeightLabels, ShipmentTypeLabels
-} from '../../../../../../shared/shipment.model';
+} from '../../../types/shipment.model';
 
 @Component({
   selector: 'app-shipment-form',
